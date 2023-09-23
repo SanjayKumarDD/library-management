@@ -1,8 +1,7 @@
 const API_URL =
   "https://www.googleapis.com/books/v1/volumes?q=lord%20of%20the%20rings";
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-const SEARCH_API =
-  'https://www.googleapis.com/books/v1/volumes?q="';
+const SEARCH_API = 'https://www.googleapis.com/books/v1/volumes?q="';
 
 const main = document.getElementById("main");
 const form = document.getElementById("form");
@@ -19,23 +18,30 @@ async function getLibrary(url) {
 
 function showLibrary(Library) {
   main.innerHTML = "";
-
+  const { totalItems } = Library;
+  const count = document.createElement("div");
+  count.innerHTML = `<h1>${totalItems}</h1>`;
   Library.forEach((book) => {
-    const { title,authors,averageRating,description } = book.volumeInfo;
-    const {thumbnail} = book.volumeInfo.imageLinks;
+    const { title, authors, averageRating, description } = book.volumeInfo;
+    const { thumbnail } = book.volumeInfo.imageLinks;
     const bookEl = document.createElement("div");
     bookEl.classList.add("book");
 
     bookEl.innerHTML = `
            <img src = "${thumbnail}" alt="${title}"> 
-            <div class="book-info">
-          <h3>${title}</h3>
-          <span class = "${getClassByRate(averageRating)}">${averageRating}</span>
+           <h2>By: ${authors}</h2>
+           <div class="book-info">
+           <h3>${title}</h3>
+           <span class = "${getClassByRate(
+             averageRating
+           )}">${averageRating}</span>
+           
+          </div>
           <div class="overview">
             <h3>Description</h3>
             ${description}
             </div>
-          `
+          `;
     main.appendChild(bookEl);
   });
 }
