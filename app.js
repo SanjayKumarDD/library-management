@@ -1,6 +1,5 @@
 const API_URL =
   "https://www.googleapis.com/books/v1/volumes?q=lord%20of%20the%20rings";
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 const SEARCH_API = 'https://www.googleapis.com/books/v1/volumes?q="';
 
 const main = document.getElementById("main");
@@ -12,15 +11,18 @@ getLibrary(API_URL);
 async function getLibrary(url) {
   const res = await fetch(url);
   const data = await res.json();
-
-  showLibrary(data.items);
+  showLibrary(data.items,data);
 }
 
-function showLibrary(Library) {
+function countBooks(data){
+  const { totalItems } = data;
+  const count = document.createElement("p");
+  count.innerHTML = `<p>About ${totalItems} results</p>`;
+  main.appendChild(count);
+}
+function showLibrary(Library,data) {
   main.innerHTML = "";
-  const { totalItems } = Library;
-  const count = document.createElement("div");
-  count.innerHTML = `<h1>${totalItems}</h1>`;
+  countBooks(data);
   Library.forEach((book) => {
     const { title, authors, averageRating, description } = book.volumeInfo;
     const { thumbnail } = book.volumeInfo.imageLinks;
@@ -29,7 +31,7 @@ function showLibrary(Library) {
 
     bookEl.innerHTML = `
            <img src = "${thumbnail}" alt="${title}"> 
-           <h2>By: ${authors}</h2>
+           
            <div class="book-info">
            <h3>${title}</h3>
            <span class = "${getClassByRate(
@@ -37,6 +39,8 @@ function showLibrary(Library) {
            )}">${averageRating}</span>
            
           </div>
+          <h3 class="author">By: ${authors}</h3>
+
           <div class="overview">
             <h3>Description</h3>
             ${description}

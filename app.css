@@ -14,6 +14,12 @@ body {
   font-family: "Poppins", sans-serif;
   margin: 0;
 }
+p{
+  color:#e5d8e1;
+}
+.author{
+  padding: 0 0 0 20px;
+}
 h2 {
   padding: 0px 0px 0px 20px;
 }
