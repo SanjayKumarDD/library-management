@@ -1,11 +1,10 @@
-const API_URL =
-  "https://www.googleapis.com/books/v1/volumes?q=lord%20of%20the%20rings";
+const API_URL = "https://www.googleapis.com/books/v1/volumes?q=harrypotter";
 const SEARCH_API = 'https://www.googleapis.com/books/v1/volumes?q="';
 
 const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
-const but = document.querySelector('#but');
+const but = document.querySelector("#but");
 
 getLibrary(API_URL);
 
@@ -13,7 +12,7 @@ async function getLibrary(url) {
   const res = await fetch(url);
   const data = await res.json();
   countBooks(data);
-  showLibrary(data.items,data);
+  showLibrary(data.items, data);
 }
 
 // but.addEventListener('click',(e) =>{
@@ -24,8 +23,7 @@ async function getLibrary(url) {
 //   // window.location.reload();
 // })
 
-
-function countBooks(data){
+function countBooks(data) {
   // const { totalItems } = data;
   const totalItems = data.items.length;
   const count = document.createElement("p");
@@ -34,7 +32,7 @@ function countBooks(data){
 }
 
 let Lib, dat;
-function showLibrary(Library,data) {
+function showLibrary(Library, data) {
   //
   Lib = Library;
   dat = data;
@@ -43,22 +41,28 @@ function showLibrary(Library,data) {
   // main.innerHTML = "";
   // countBooks(data);
   Library.forEach((book) => {
-    const { title, authors, averageRating, description } = book.volumeInfo;
+    const { title, authors, averageRating, description, pageCount } =
+      book.volumeInfo;
     const { thumbnail } = book.volumeInfo.imageLinks;
     const bookEl = document.createElement("div");
     bookEl.classList.add("book");
     bookEl.innerHTML = `
-           <img src = "${thumbnail}" alt="${title}"> 
-           
+            <h3 class="author"> ${title}</h3>
+
+            <button>Add to Cart</button>
+            <button>Buy now</button>
+
+            <img src = "${thumbnail}" alt="${title}"> 
+           <span class= book-info>Pages: ${pageCount}</span>
            <div class="book-info">
-           <h3>${title}</h3>
+          
+           <h3>By: ${authors}</h3>
            <span class = "${getClassByRate(
              averageRating
            )}">${averageRating}</span>
            
           </div>
-          <h3 class="author">By: ${authors}</h3>
-
+          
           <div class="overview">
             <h3>Description</h3>
             ${description}
@@ -68,13 +72,14 @@ function showLibrary(Library,data) {
   });
 }
 
-
-window.addEventListener('scroll',()=>{
-   if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight){
-      showLibrary(Lib,dat);
-   }
-})
-
+window.addEventListener("scroll", () => {
+  if (
+    window.scrollY + window.innerHeight >=
+    document.documentElement.scrollHeight
+  ) {
+    showLibrary(Lib, dat);
+  }
+});
 
 function getClassByRate(vote) {
   if (vote >= 4) {

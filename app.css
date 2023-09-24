@@ -14,10 +14,23 @@ body {
   font-family: "Poppins", sans-serif;
   margin: 0;
 }
-p{
-  color:#e5d8e1;
+p {
+  color: #e5d8e1;
 }
-.author{
+/* .buy {
+  display: inline-block;
+} */
+button {
+  width: 100%;
+  padding: 15px;
+  font-size: 25px;
+  background-color: #0b4aa8;
+  color: #fff;
+}
+button:nth-child(2) {
+  background-color: #f09123;
+}
+.author {
   padding: 0 0 0 20px;
 }
 h2 {
@@ -42,7 +55,7 @@ a:not(footer a) {
   text-decoration: none;
   font-size: 25px;
   padding: 10px;
-  background-color: #39d491;
+  background-color: #39672e;
   border: 2px solid #fff;
 }
 a:hover:not(footer a) {
@@ -53,10 +66,11 @@ a:hover:not(footer a) {
 footer {
   background-color: #39672e;
   text-align: center;
-  padding-top: 30px;
-  padding-bottom: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   color: #ecf8f8;
-  position: relative;
+  /* position: relative; */
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
