@@ -17,9 +17,10 @@ body {
 p {
   color: #e5d8e1;
 }
-/* .buy {
-  display: inline-block;
-} */
+
+#cou {
+  padding-left: 60px;
+}
 button {
   width: 100%;
   padding: 15px;
@@ -37,11 +38,13 @@ h2 {
   padding: 0px 0px 0px 20px;
 }
 h1 {
-  color: #e5d8e1;
+  color: #062115;
+  background-color: #fff;
   padding: 20px 20px 20px 40px;
   font-size: 40px;
+  font-weight: bolder;
   text-align: center;
-  background-image: url("https://images.unsplash.com/photo-1588580000645-4562a6d2c839?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80");
+  /* background-image: url("https://img.freepik.com/premium-vector/white-color-shelves-bookcase-illustration-with-different-books-shelf-white-background-accessory-display-stand-retail-display-stand_224528-410.jpg?w=740"); */
   background-size: contain;
   background-position: bottom;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
@@ -114,7 +117,8 @@ main {
 }
 
 .book {
-  width: 300px;
+  width: 200px;
+  /* height: 800px; */
   margin: 1rem;
   background-color: var(--secondary-color);
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);

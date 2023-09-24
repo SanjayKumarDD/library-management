@@ -5,6 +5,8 @@ const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 const but = document.querySelector("#but");
+const cou = document.querySelector("#cou");
+const home = document.querySelector("#home");
 
 getLibrary(API_URL);
 
@@ -15,20 +17,38 @@ async function getLibrary(url) {
   showLibrary(data.items, data);
 }
 
-// but.addEventListener('click',(e) =>{
-//   e.preventDefault();
-//   // getLibrary(API_URL);
-//   const str= "classic";
-//     getLibrary(SEARCH_API + str);
-//   // window.location.reload();
-// })
+home1.addEventListener("click", (e) => {
+  e.preventDefault();
+  main.innerHTML = "";
+  const term = SEARCH_API + "fantasy";
+  getLibrary(term);
+});
+home2.addEventListener("click", (e) => {
+  e.preventDefault();
+  main.innerHTML = "";
+  const term = SEARCH_API + "classic";
+  getLibrary(term);
+});
+home3.addEventListener("click", (e) => {
+  e.preventDefault();
+  main.innerHTML = "";
+  const term = SEARCH_API + "science";
+  getLibrary(term);
+});
+home4.addEventListener("click", (e) => {
+  e.preventDefault();
+  main.innerHTML = "";
+  const term = SEARCH_API + "comics";
+  getLibrary(term);
+});
 
 function countBooks(data) {
   // const { totalItems } = data;
   const totalItems = data.items.length;
   const count = document.createElement("p");
+  cou.innerHTML = "";
   count.innerHTML = `<p>About ${totalItems} results</p>`;
-  main.appendChild(count);
+  cou.appendChild(count);
 }
 
 let Lib, dat;
